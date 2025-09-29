@@ -28,7 +28,7 @@ It was built as a complete project covering both **backend (REST API)** and **fr
 - User registration (password hashing)  
 - JWT-based login  
 - Role-based access (`admin`, `user`)  
-- Profile page with password change & account deletion  
+- Profile page with password change & account deletion  (Will add later)
 
 ### 🛠️ Admin Dashboard  
 - **Cars CRUD** – add, edit, activate/deactivate, delete  
