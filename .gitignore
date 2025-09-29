@@ -1,2 +1,5 @@
 # Local junk files
 everything.txt
+
+# Ignore composer vendor
+/backend/vendor/
