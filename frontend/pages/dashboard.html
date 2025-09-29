@@ -1,0 +1,512 @@
+<div class="admin-dashboard">
+
+  <!-- =============== FILTER BAR =============== -->
+  <div class="entity-filter">
+    <button class="filter-pill active" data-target="cars-sec">Cars</button>
+    <button class="filter-pill" data-target="locations-sec">Locations</button>
+    <button class="filter-pill" data-target="users-sec">Users</button>
+    <button class="filter-pill" data-target="reservations-sec">Reservations</button>
+  </div>
+
+
+  <!-- =============== CARS SECTION =============== -->
+  <section id="cars-sec" class="dash-section show">
+    <div class="section-header">
+      <div>
+        <h2>Cars Management</h2>
+        <p>List, filter by availability, create, edit, delete, (de)activate.</p>
+      </div>
+      <div class="inline-actions">
+        <button id="btn-get-cars" class="btn btn-primary">All Cars</button>
+        <button id="btn-get-active-cars" class="btn btn-success">Active Cars</button>
+      </div>
+    </div>
+
+    <div class="grid two">
+
+      <!-- LEFT: FORMS -->
+      <div class="card">
+
+        <h3 class="card-title">Queries</h3>
+        <div class="controls-stack">
+          <!-- Get by ID -->
+          <form id="form-get-car-id" class="form-inline">
+            <div class="input-group">
+              <label for="car-id">Car ID</label>
+              <input type="number" id="car-id" placeholder="e.g. 12" />
+            </div>
+            <button type="submit" class="btn btn-info">Get by ID</button>
+          </form>
+
+          <!-- Available in range -->
+          <form id="form-get-available-cars" class="form-inline">
+            <div class="input-row">
+              <div class="input-group">
+                <label for="available-from">From</label>
+                <input type="date" id="available-from" />
+              </div>
+              <div class="input-group">
+                <label for="available-to">To</label>
+                <input type="date" id="available-to" />
+              </div>
+            </div>
+            <button type="submit" class="btn btn-info">Available in Range</button>
+          </form>
+        </div>
+
+        <hr class="card-sep" />
+
+        <!-- Create -->
+        <h3 class="card-title">Create</h3>
+        <form id="form-create-car" class="form-vertical">
+          <div class="input-row">
+            <div class="input-group">
+              <label for="car-model">Model</label>
+              <input type="text" id="car-model" placeholder="Toyota Corolla" required />
+            </div>
+            <div class="input-group">
+              <label for="car-year">Year</label>
+              <input type="number" id="car-year" placeholder="2023" required />
+            </div>
+          </div>
+          <div class="input-group">
+            <label for="car-price">Price / day (USD)</label>
+            <input type="number" id="car-price" step="0.01" placeholder="45.99" required />
+          </div>
+          <button type="submit" class="btn btn-success">Create Car</button>
+        </form>
+
+        <hr class="card-sep" />
+
+        <!-- Edit -->
+        <h3 class="card-title">Edit</h3>
+        <form id="form-update-car" class="form-vertical">
+          <div class="input-group">
+            <label for="update-car-id">Car ID</label>
+            <input type="number" id="update-car-id" placeholder="Enter ID to update" required />
+          </div>
+          <div class="input-group">
+            <label for="update-car-model">Model</label>
+            <input type="text" id="update-car-model" required />
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="update-car-year">Year</label>
+              <input type="number" id="update-car-year" required />
+            </div>
+            <div class="input-group">
+              <label for="update-car-price">Price / day</label>
+              <input type="number" id="update-car-price" step="0.01" required />
+            </div>
+          </div>
+          <div class="input-row">
+            <button type="submit" class="btn btn-warning">Save Changes</button>
+            <button type="button" class="btn btn-danger" id="btn-modal-delete">Delete</button>
+          </div>
+        </form>
+
+      </div>
+
+      <!-- RIGHT: TABLE + RAW JSON -->
+      <div class="card">
+        <div class="table-head">
+          <h3 class="card-title">Cars</h3>
+          <div class="legend">
+            <span class="badge green">Active</span>
+            <span class="badge gray">Inactive</span>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table class="data-table" id="cars-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Model</th>
+                <th>Year</th>
+                <th>$/day</th>
+                <th>Status</th>
+                <th style="width:190px;">Actions</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+          <div class="empty-state" id="cars-empty" hidden>
+            <p>No cars to display. Try “All Cars”.</p>
+          </div>
+        </div>
+        <div class="raw-json">
+          <div class="raw-json-head">
+            <h4>Raw response</h4>
+            <button class="btn btn-ghost" id="btn-clear-json">Clear</button>
+          </div>
+          <pre id="cars-result" class="code"></pre>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- =============== LOCATIONS SECTION =============== -->
+  <section id="locations-sec" class="dash-section">
+    <div class="section-header">
+      <div>
+        <h2>Locations Management</h2>
+        <p>View, search, create and delete locations.</p>
+      </div>
+      <div class="inline-actions">
+        <button id="btn-get-locations" class="btn btn-primary">All Locations</button>
+        <button id="btn-clear-locations" class="btn btn-danger">Clear Table</button>
+      </div>
+    </div>
+
+    <div class="grid two">
+
+      <!-- LEFT: FORMS -->
+      <div class="card">
+        <h3 class="card-title">Queries</h3>
+        <div class="controls-stack">
+          <!-- Get by ID -->
+          <form id="form-get-location-id" class="form-inline">
+            <div class="input-group">
+              <label for="location-id">Location ID</label>
+              <input type="number" id="location-id" placeholder="e.g. 3" />
+            </div>
+            <button type="submit" class="btn btn-info">Get by ID</button>
+          </form>
+
+          <!-- Search -->
+          <form id="form-search-location" class="form-inline">
+            <div class="input-group">
+              <label for="search-city">City</label>
+              <input type="text" id="search-city" placeholder="e.g. Sarajevo" />
+            </div>
+            <div class="input-group">
+              <label for="search-country">Country</label>
+              <input type="text" id="search-country" placeholder="e.g. Bosnia" />
+            </div>
+            <button type="submit" class="btn btn-info">Search</button>
+          </form>
+        </div>
+
+        <hr class="card-sep" />
+
+        <!-- Create -->
+        <h3 class="card-title">Create</h3>
+        <form id="form-create-location" class="form-vertical">
+          <div class="input-group">
+            <label for="location-name">Name</label>
+            <input type="text" id="location-name" required />
+          </div>
+          <div class="input-group">
+            <label for="location-address">Address</label>
+            <input type="text" id="location-address" required />
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="location-city">City</label>
+              <input type="text" id="location-city" required />
+            </div>
+            <div class="input-group">
+              <label for="location-country">Country</label>
+              <input type="text" id="location-country" required />
+            </div>
+          </div>
+          <button type="submit" class="btn btn-success">Create Location</button>
+        </form>
+
+        <hr class="card-sep" />
+
+        <!-- Delete -->
+        <h3 class="card-title">Delete</h3>
+        <form id="form-delete-location" class="form-inline">
+          <div class="input-group">
+            <label for="delete-location-id">Location ID</label>
+            <input type="number" id="delete-location-id" required />
+          </div>
+          <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+      </div>
+
+      <!-- RIGHT: TABLE + RAW JSON -->
+      <div class="card">
+        <div class="table-head">
+          <h3 class="card-title">Locations</h3>
+        </div>
+        <div class="table-wrap">
+          <table class="data-table" id="locations-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>Country</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+          <div class="empty-state" id="locations-empty" hidden>
+            <p>No locations found.</p>
+          </div>
+        </div>
+        <div class="raw-json">
+          <div class="raw-json-head">
+            <h4>Raw response</h4>
+            <button class="btn btn-ghost" id="btn-clear-json-loc">Clear</button>
+          </div>
+          <pre id="locations-result" class="code"></pre>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+
+  <!-- =============== USERS SECTION =============== -->
+<section id="users-sec" class="dash-section">
+  <div class="section-header">
+    <div>
+      <h2>Users Management</h2>
+      <p>List, create, update, delete, activate/deactivate, search.</p>
+    </div>
+    <div class="inline-actions">
+      <button id="btn-get-users" class="btn btn-primary">All Users</button>
+      <button id="btn-get-active-users" class="btn btn-success">Active Users</button>
+      <button id="btn-get-inactive-users" class="btn btn-secondary">Inactive Users</button>
+      <button id="btn-clear-users" class="btn btn-danger">Clear Table</button>
+    </div>
+  </div>
+
+  <div class="grid two">
+
+    <!-- LEFT: FORMS -->
+    <div class="card">
+      <h3 class="card-title">Queries</h3>
+      <div class="controls-stack">
+        <!-- Get by ID -->
+        <form id="form-get-user-id" class="form-inline">
+          <div class="input-group">
+            <label for="user-id">User ID</label>
+            <input type="number" id="user-id" placeholder="e.g. 5" required />
+          </div>
+          <button type="submit" class="btn btn-info">Get by ID</button>
+        </form>
+
+        <!-- Search by Name -->
+        <form id="form-search-user" class="form-inline">
+          <div class="input-group">
+            <label for="search-user-name">Name</label>
+            <input type="text" id="search-user-name" placeholder="e.g. John" />
+          </div>
+          <button type="submit" class="btn btn-info">Search Name</button>
+        </form>
+
+        <!-- Search by Email -->
+        <form id="form-search-user-email" class="form-inline">
+          <div class="input-group">
+            <label for="search-user-email">Email</label>
+            <input type="email" id="search-user-email" placeholder="e.g. john@site.com" />
+          </div>
+          <button type="submit" class="btn btn-info">Search Email</button>
+        </form>
+      </div>
+
+      <hr class="card-sep" />
+
+      <!-- Create -->
+      <h3 class="card-title">Create</h3>
+      <form id="form-create-user" class="form-vertical">
+        <div class="input-row">
+          <div class="input-group">
+            <label for="create-user-fn">First Name</label>
+            <input type="text" id="create-user-fn" required />
+          </div>
+          <div class="input-group">
+            <label for="create-user-ln">Last Name</label>
+            <input type="text" id="create-user-ln" required />
+          </div>
+        </div>
+        <div class="input-group">
+          <label for="create-user-email">Email</label>
+          <input type="email" id="create-user-email" required />
+        </div>
+        <div class="input-group">
+          <label for="create-user-password">Password</label>
+          <input type="password" id="create-user-password" required />
+        </div>
+        <div class="input-group">
+          <label for="create-user-role">Role</label>
+          <select id="create-user-role">
+            <option value="user" selected>User</option>
+            <option value="admin">Admin</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-success">Create User</button>
+      </form>
+
+      <hr class="card-sep" />
+
+      <!-- Update -->
+      <h3 class="card-title">Update</h3>
+      <form id="form-update-user" class="form-vertical">
+        <div class="input-group">
+          <label for="update-user-id">User ID</label>
+          <input type="number" id="update-user-id" placeholder="ID to update" required />
+        </div>
+        <div class="input-row">
+          <div class="input-group">
+            <label for="update-user-fn">First Name</label>
+            <input type="text" id="update-user-fn" />
+          </div>
+          <div class="input-group">
+            <label for="update-user-ln">Last Name</label>
+            <input type="text" id="update-user-ln" />
+          </div>
+        </div>
+        <div class="input-group">
+          <label for="update-user-email">Email</label>
+          <input type="email" id="update-user-email" />
+        </div>
+        <div class="input-group">
+          <label for="update-user-password">Password</label>
+          <input type="password" id="update-user-password" />
+        </div>
+        <div class="input-group">
+          <label for="update-user-role">Role</label>
+          <select id="update-user-role">
+            <option value="user">User</option>
+            <option value="admin">Admin</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-warning">Save Changes</button>
+      </form>
+
+      <hr class="card-sep" />
+
+      <!-- Delete -->
+      <h3 class="card-title">Delete</h3>
+      <form id="form-delete-user" class="form-inline">
+        <div class="input-group">
+          <label for="delete-user-id">User ID</label>
+          <input type="number" id="delete-user-id" placeholder="e.g. 8" required />
+        </div>
+        <button type="submit" class="btn btn-danger">Delete</button>
+      </form>
+    </div>
+
+    <!-- RIGHT: TABLE + RAW JSON -->
+    <div class="card">
+      <div class="table-head">
+        <h3 class="card-title">Users</h3>
+        <div class="legend">
+          <span class="badge green">Active</span>
+          <span class="badge gray">Inactive</span>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table class="data-table" id="users-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>First</th>
+              <th>Last</th>
+              <th>Email</th>
+              <th>Role</th>
+              <th>Status</th>
+              <th style="width:190px;">Actions</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <div class="empty-state" id="users-empty" hidden>
+          <p>No users found.</p>
+        </div>
+      </div>
+      <div class="raw-json">
+        <div class="raw-json-head">
+          <h4>Raw response</h4>
+          <button class="btn btn-ghost" id="btn-clear-json-users">Clear</button>
+        </div>
+        <pre id="users-result" class="code"></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+  <!-- =============== RESERVATIONS SECTION =============== -->
+  <section id="reservations-sec" class="dash-section">
+    <div class="section-header">
+      <div>
+        <h2>Reservations Management</h2>
+        <p>List, fetch by ID and delete reservations.</p>
+      </div>
+      <div class="inline-actions">
+        <button id="btn-get-reservations" class="btn btn-primary">All Reservations</button>
+        <button id="btn-clear-reservations" class="btn btn-danger">Clear Table</button>
+      </div>
+    </div>
+
+    <div class="grid two">
+      <!-- LEFT: FORMS -->
+      <div class="card">
+        <h3 class="card-title">Queries</h3>
+        <form id="form-get-reservation-id" class="form-inline">
+          <div class="input-group">
+            <label for="reservation-id">Reservation ID</label>
+            <input type="number" id="reservation-id" placeholder="e.g. 7" />
+          </div>
+          <button type="submit" class="btn btn-info">Get by ID</button>
+        </form>
+
+        <hr class="card-sep" />
+
+        <h3 class="card-title">Delete</h3>
+        <form id="form-delete-reservation" class="form-inline">
+          <div class="input-group">
+            <label for="delete-reservation-id">Reservation ID</label>
+            <input type="number" id="delete-reservation-id" required />
+          </div>
+          <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+      </div>
+
+      <!-- RIGHT: TABLE + RAW JSON -->
+      <div class="card">
+        <div class="table-head">
+          <h3 class="card-title">Reservations</h3>
+        </div>
+        <div class="table-wrap">
+          <table class="data-table" id="reservations-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>User</th>
+                <th>Car</th>
+                <th>Pickup</th>
+                <th>Return</th>
+                <th>Status</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+          <div class="empty-state" id="reservations-empty" hidden>
+            <p>No reservations found.</p>
+          </div>
+        </div>
+        <div class="raw-json">
+          <div class="raw-json-head">
+            <h4>Raw response</h4>
+            <button class="btn btn-ghost" id="btn-clear-json-res">Clear</button>
+          </div>
+          <pre id="reservations-result" class="code"></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>

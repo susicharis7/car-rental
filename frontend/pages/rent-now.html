@@ -1,0 +1,53 @@
+<section id="rent-now" class="rent-form">
+    <div class="rent-card">
+        <h2>RENT A CAR NOW</h2>
+        <p>Choose your dream car - select dates & locations, and book instantly.</p>
+
+ 
+        <form id="rent-form">
+            <!-- Select Your Car -->
+             <div class="form-group">
+                <label for="car">Select Your Car</label>    
+                <select id="car" name="car" required>
+                
+                </select>
+             </div> <!-- form-group -->
+
+             <!-- Pick Location -->
+             <div class="form-row">
+                <div class="form-group">    
+                    <label for="pickup-location">Pick-up Location</label>
+                    <select id="pickup-location" name="pickup_location_id" required></select>
+                    
+                </div>
+
+                <div class="form-group">
+                    <label for="return-location">Return Location</label>
+                    <select id="return-location" name="return_location_id" required></select>
+                </div>
+             </div>
+
+
+             <!-- Dates -->
+
+             <div class="form-row">
+                <div class="form-group">
+                    <label for="start"> Pick-up Date</label>
+                    <input type="date" id="start" name="start">
+                </div>
+
+                <div class="form-group">
+                    <label for="end">Return Date</label>
+                    <input type="date" id="end" name="end">
+                </div>
+             </div>
+
+             <!-- Submit -->
+              <div class="form-actions">
+                <button type="submit" class="rent-btn">RENT NOW</button>
+              </div>
+
+
+        </form>
+    </div>
+</section>

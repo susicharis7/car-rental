@@ -1,0 +1,203 @@
+/* Register CSS */
+.register-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;         
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;      
+    background: rgba(0,0,0,0.8);
+}
+
+.register-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;    
+    z-index: -2;           
+}
+
+.register-content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 420px;
+    padding: 40px;
+    border-radius: 16px;
+    background-color: rgba(34,27,46,0.85);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+    text-align: center;
+    color: #fff;
+}
+
+.register-content h1 {
+    font-size: 75px;
+    margin-bottom: 20px;
+}
+
+.register-content p {
+    margin-bottom: 25px;
+    font-size: 14px;
+    color: #ccc;
+}
+
+.register-content a {
+    color: #9f7aea;
+    text-decoration: none;
+}
+
+/* Input */
+.register-input-group {
+  display: flex;
+  gap: 10px;
+}
+
+.register-input-group input,
+.register-content input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+  background: #2f2842;
+  color: #fff;
+  font-size: 14px;
+}
+
+/* Button */
+.register-btn {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 6px;
+  background: #9f7aea;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background .2s ease;
+}
+.register-btn:hover {
+  background: #805ad5;
+}
+
+/* Divider */
+.register-divider {
+  text-align: center;
+  margin: 20px 0;
+  color: #aaa;
+  font-size: 14px;
+  position: relative;
+}
+.register-divider::before,
+.register-divider::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 35%;
+  height: 1px;
+  background: rgba(255,255,255,.3);
+}
+.register-divider::before { left: 0; }
+.register-divider::after { right: 0; }
+
+/* Social register */
+.register-socials {
+  display: flex;
+  gap: 15px;
+}
+.register-socials button {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+.google {
+  background: #fff;
+  color: #000;
+}
+.apple {
+  background: #000;
+  color: #fff;
+  border: 1px solid #fff;
+}
+
+
+/* ----------------------------------------------------------
+   Responsive 
+---------------------------------------------------------- */
+
+
+/* @media (max-width: 1200px) {
+  
+}
+
+
+@media (max-width: 992px) {
+ 
+}
+
+
+@media (max-width: 768px) {
+  
+}
+
+
+@media (max-width: 576px) {
+ 
+} */
+
+
+@media (max-width: 400px) {
+
+
+.register-content {
+    width: 90%;
+}
+
+.register-content h1 {
+    font-size: 65px;
+    margin-bottom: 15px;
+}
+
+.register-content p {
+    margin-bottom: 25px;
+    font-size: 16px;
+}
+
+
+
+.register-input-group input,
+.register-content input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px
+}
+
+
+
+/* Divider */
+.register-divider {
+  margin: 20px 0;
+}
+
+.register-divider::before,
+.register-divider::after {
+  position: absolute;
+  top: 50%;
+  width: 27%;
+  height: 1px;
+}
+
+
+
+
+}
+
+

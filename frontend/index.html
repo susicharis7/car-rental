@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en" class="no-js">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BOB Luxury Car Rental</title>
+  <meta name="description" content="Best Luxury Car Rental In Bosnia">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/spapp.css">
+  <link rel="stylesheet" href="assets/css/home.css">
+  <link rel="stylesheet" href="assets/css/login.css">
+  <link rel="stylesheet" href="assets/css/register.css">
+  <link rel="stylesheet" href="assets/css/cars.css">
+  <link rel="stylesheet" href="assets/css/rent-now.css">
+  <link rel="stylesheet" href="assets/css/profile.css">
+  <link rel="stylesheet" href="assets/css/dashboard.css">
+
+  <!-- Toastr -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastr@2.1.4/build/toastr.min.css" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+
+<body>
+
+  <!-- Nav -->
+  <header>
+    <nav>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Open Menu">☰</button>
+      <ul class="nav-menu" id="nav-menu">
+        <!-- Popunjava se automatski iz user-service.js -->
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Content -->
+  <section id="pageContent">
+    <main id="spapp" role="main">
+      <section id="home" data-load="home.html"></section>
+      <section id="cars" data-load="cars.html"></section>
+      <section id="rent-now" data-load="rent-now.html"></section>
+      <section id="register" data-load="register.html"></section>
+      <section id="login" data-load="login.html"></section>
+      <section id="profile" data-load="profile.html"></section>
+      <section id="dashboard" data-load="dashboard.html"></section>
+    </main>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <h3 class="lined">About Our Car Rental</h3>
+      <p class="lead">
+        Sušić Car Rental is your trusted partner for renting high-quality vehicles.
+        Whether you need a car for a business trip, vacation, or a special occasion,
+        we offer a wide selection to meet your needs.
+      </p>
+      <p class="mission">Our mission is to provide the best rental experience — safe, easy, and affordable.</p>
+
+      <h4 class="lined" style="margin-top:32px;">Contact Us</h4>
+      <div class="footer-socials">
+        <a href="https://www.facebook.com/hnn.strike.9" target="null" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="https://x.com/kanyewest" target="null" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://www.instagram.com/haarke_/" target="null" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" aria-label="Dribbble"><i class="fa-brands fa-dribbble"></i></a>
+        <a href="https://www.linkedin.com/in/haris-su%C5%A1i%C4%87-a96865339/" target="null" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+      </div>
+
+      <div class="footer-contact">
+        <p><strong>Email:</strong> <a href="mailto:haris.susic@stu.ibu.edu.ba">haris.susic@stu.ibu.edu.ba</a></p>
+        <p><strong>Phone:</strong> <a href="tel:+38762625427">+387 62 625 427</a></p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      © 2025 Sušić C. R. All rights reserved. | Project by <a href="#">Sušić Haris</a>
+    </div>
+  </footer>
+
+  <!-- JS Libraries -->
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/jquery.spapp.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/toastr@2.1.4/build/toastr.min.js"></script>
+
+  <!-- Utility & Services -->
+  <script src="utils/constants.js"></script>
+  <script src="utils/rest-client.js"></script>
+  <script src="utils/utils.js"></script>
+  <script src="utils/roles.js"></script>
+  <script src="services/user-service.js"></script>
+
+  <script src="assets/js/rent-now.js"></script>
+  <script src="assets/js/profile.js"></script>
+
+  <!-- Dashboard -->
+  <script src="services/car-service.js"></script>
+  <script src="services/location-service.js"></script>
+  <script src="services/reservation-service.js"></script>
+  <script src="services/admin-service.js"></script>
+
+
+
+  <script src="assets/js/main.js"></script>
+  
+
+  <!-- SPApp & UserService -->
+  <script>
+    $(document).ready(function () {
+      UserService.generateMenuItems();
+
+      var app = $.spapp({
+        defaultView: "#home",
+        templateDir: "pages/"
+      });
+
+      app.route({
+      "#profile": function () {
+        $("#profile").load("pages/profile.html", function () {
+          ProfileService.init();
+        });
+      }
+      });
+
+      
+
+      app.run();
+      UserService.init();
+
+      
+    });
+  </script>
+
+</body>
+</html>

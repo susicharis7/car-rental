@@ -1,0 +1,261 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+
+/* Hamburger Menu (for desktop so it's hidden) */
+.nav-toggle {
+    display: none;               
+    color: #fff;
+    border: 0;
+    cursor: pointer;
+    padding: 6px;
+    margin-left: 12px;
+    background:none;
+}
+
+/* DONE */
+
+html,body {
+  height: 100%;
+}
+
+body {
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+}
+
+#pageContent {
+  flex: 1 0 auto;
+}
+
+.site-footer {
+  margin-top: auto;
+  position: static;
+}
+
+/* Smooth Scroll */
+
+:root {
+  --nav-h: 120px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+section[id] {
+  scroll-margin-top: var(--nav-h);
+}
+
+/* Nav Bar */ /* ----------------------------------------------- */  
+
+nav {
+    background: linear-gradient(90deg, #2B0927, #4a1d44, #2B0927);
+    color: white;
+    display: flex;
+    align-items: center; 
+    padding: 55px 70px;
+
+    box-shadow: 0 4px 12px rgba(0,0,0, 0.8);
+    position: sticky; /* this makes it stay at top when scrolling */
+    top: 0;
+    z-index: 1000;
+    
+}
+
+nav ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: center; /* horizontalno centriranje */
+    flex: 1;
+    gap: 40px;
+    
+
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    transition: all 0.3s ease;
+
+    font-weight: 600;
+    letter-spacing: 1px;
+   
+    
+}
+
+nav ul li a:hover {
+    color: #ff33cc;
+    text-shadow: 0 0 10px #ff33cc, 0 0 20px #ff66ff; /* glow effect */
+    transform: scale(1.05); 
+}
+
+nav ul li a.active {
+    color : #ff7700;
+    border-bottom: 2px solid #ffd700;;
+    padding-bottom: 5px;
+}
+/* Header */ /* ----------------------------------------------- */
+
+
+#header {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* pravi centar po X i Y osi */
+    
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    
+    color: white;
+    z-index: 3; 
+}
+
+
+
+
+  /* Footer */ /* ---------------------------------------------------------- */
+
+  .site-footer {
+    background: linear-gradient(90deg, #2B0927, #4a1d44, #2B0927);
+    color: #fff;
+    margin-top: 0px;
+    padding-top: 64px;
+    box-shadow: 0 -8px 28px rgba(0,0,0,.35) inset;
+  }
+
+  .site-footer .footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+    text-align: center;
+  }
+
+  .site-footer .lined{
+  position:relative;
+  display:inline-block;
+  text-transform:uppercase;
+  letter-spacing:1.5px;
+  font-weight:800;
+  margin:6px 0 18px;
+  padding:0 18px;
+}
+
+.site-footer .lined::before,
+.site-footer .lined::after{
+  content:"";
+  position:absolute;
+  top:50%;
+  width:160px; height:2px;
+  background:rgba(255,255,255,.25);
+  transform:translateY(-50%);
+}
+.site-footer .lined::before{ left:-170px; }
+.site-footer .lined::after{  right:-170px; }
+
+.site-footer p.lead{
+  font-size:18px;
+  line-height:1.7;
+  color:rgba(255,255,255,.9);
+  max-width:900px;
+  margin:0 auto 12px;
+}
+.site-footer p.mission{
+  color:rgba(255,255,255,.9);
+  font-style:italic;
+  margin:12px auto 28px;
+}
+
+.footer-socials{
+  display:flex;
+  justify-content:center;
+  gap:14px;
+  margin:22px 0 16px;
+}
+.footer-socials a{
+  width:42px; height:42px;
+  display:grid; place-items:center;
+  border-radius:8px;
+  background:rgba(255,255,255,.12);
+  color:#fff; text-decoration:none;
+  transition:transform .2s ease, background .2s ease, box-shadow .2s ease;
+}
+.footer-socials a:hover{
+  transform:translateY(-3px);
+  background:rgba(255,255,255,.22);
+  box-shadow:0 8px 20px rgba(0,0,0,.35), 0 0 12px rgba(255,102,255,.35);
+}
+
+.footer-contact{
+  font-size:15px; opacity:.95;
+}
+.footer-contact a{
+  color:#fff; text-decoration:none;
+  border-bottom:1px dotted rgba(255,255,255,.45);
+}
+
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,.18);
+  margin-top:36px;
+  padding:16px 24px 28px;
+  text-align:center;
+  font-size:14px;
+  color:rgba(255,255,255,.8);
+}
+.footer-bottom a{
+  color:#ffd5f7; text-decoration:none;
+  border-bottom:1px dotted rgba(255,213,247,.55);
+}
+
+
+
+
+/* ----------------------------------------------------------
+   Responsive - only for nav
+---------------------------------------------------------- */
+
+
+/* @media (max-width: 1200px) {
+
+}
+
+
+@media (max-width: 992px) {
+  
+} */
+
+
+@media (max-width: 768px) {
+  nav {  
+    padding: 25px 30px;
+    max-width: 768px;
+  }
+
+
+  nav ul li a {
+      font-size: 14px;
+      transition: all 0.3s ease;
+  }
+}
+
+
+@media (max-width: 576px) {
+   
+  nav ul li a {
+      font-size: 10px;
+      transition: all 0.3s ease;
+  }
+
+
+}
+
+

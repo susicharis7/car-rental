@@ -1,0 +1,36 @@
+<div class="login-container">
+
+  <!-- Video background -->
+  <video autoplay loop muted playsinline class="background-clip">
+    <source src="assets/videos/rolls-long-video.mp4" type="video/mp4">
+  </video>
+
+  <!-- Login box -->
+  <div class="login-content">
+    <h1>Login</h1>
+    <p>Enter your account to rent a car.</p>
+
+    <form id="login-form">
+      <input type="email" placeholder="Email" required>
+      <input type="password" placeholder="Password" required>
+      <button type="submit" class="login-btn">Login</button>
+    </form>
+
+    <div class="login-divider">Or continue with</div>
+    <div class="login-socials">
+      <button class="google">Google</button>
+      <button class="apple">Apple</button>
+    </div>
+
+    <p style="margin-top:20px; font-size:13px;">
+      Don't have an account? <a href="#register">Register</a>
+    </p>
+  </div>
+
+</div>
+
+
+<script>
+  // this takes the `submit` form from `login-form` -> user-service.js
+  UserService.init();
+</script>
