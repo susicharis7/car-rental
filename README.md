@@ -11,7 +11,8 @@ It was built as a complete project covering both **backend (REST API)** and **fr
 - MySQL (XAMPP local server)  
 - DAO + Service architecture  
 - JWT authentication (Firebase JWT)  
-- Swagger (OpenAPI) documentation  
+- Swagger (OpenAPI) documentation
+- Middleware 
 
 **Frontend (SPA):**  
 - HTML5, CSS3 (modern dark/neon UI)  
