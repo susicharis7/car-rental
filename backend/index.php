@@ -26,14 +26,17 @@ Flight::route('/*', function() {
 
     // login~register~docs without Token (provjerava da li traze token ~ ako ne ~ odmah returna TRUE, javno su dostupne)
     if (
+    $url === '/' ||
     strpos($url, '/auth/login') === 0 ||
     strpos($url, '/auth/register') === 0 ||
     strpos($url, '/docs') === 0 ||
+    strpos($url, '/v1/docs') === 0 ||
     strpos($url, '/cars/active') === 0 ||
     strpos($url, '/locations') === 0
 ) {
     return true;
 }
+
 
 
     // enters `try-catch` , takes the header out of `Authentication` => ono sto posaljemo u swaggeru u `Authorize` 
